@@ -1,0 +1,29 @@
+{
+  "name": "My-Team-Manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mac-attac/My-Team-Manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mac-attac/My-Team-Manager/issues"
+  },
+  "homepage": "https://github.com/mac-attac/My-Team-Manager#readme",
+  "dependencies": {
+    "email-validator": "^2.0.4",
+    "inquirer": "^7.3.3",
+    "jest": "^26.6.3"
+  }
+}
