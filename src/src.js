@@ -4,8 +4,9 @@ const { Manager, Engineer, Intern } = require("../lib/classes");
 // const cardGenerator = require("../index");
 const fs = require("fs");
 const path = require("path");
-const OUTPUT_DIR = path.resolve(__dirname, "output");
+const OUTPUT_DIR = path.resolve(__dirname, "../output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+const { cardGenerator } = require("../index");
 
 const allEmployees = [];
 
@@ -129,7 +130,7 @@ function nextEmployee() {
     },
   ]).then((answers) => {
     if (answers.choices === "Engineer") {
-      createEngineer();
+      createEngineer(answers.choices);
     } else if (answers.choices === "Intern") {
       createIntern();
     } else {
@@ -139,32 +140,13 @@ function nextEmployee() {
 }
 
 function allDone() {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
   fs.writeFile(outputPath, cardGenerator(allEmployees), (err) => {
     if (err) throw err;
     console.log("Success!");
   });
-}
-
-function cardGenerator(arr) {
-  console.log(arr);
-  for (var i = 0; i < arr.length; i++) {
-    if (getRole() === "Engineer") {
-      return html.push(engineerCard());
-    } else if (getRole() === "Manager") {
-      return html.push(managerCard());
-    } else {
-      return html.push(internCard());
-    }
-  }
-
-  return (
-    html +
-    `</div>
-          </div>
-      </div>
-  </body>
-  </html>`
-  );
 }
 
 createManager();

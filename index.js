@@ -1,60 +1,3 @@
-const src = require("./src/src");
-const { Manager, Engineer, Intern } = require("./lib/classes");
-
-function cardGenerator(arr) {
-  for (var i = 0; i < arr.length; i++) {
-    if (getRole() === "Engineer") {
-      return html.push(engineerCard());
-    } else if (getRole() === "Manager") {
-      return html.push(managerCard());
-    } else {
-      return html.push(internCard());
-    }
-  }
-
-  return (
-    html +
-    `</div>
-          </div>
-      </div>
-  </body>
-  </html>`
-  );
-}
-
-function engineerCard() {
-  return `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${this.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${this.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${this.email}">${this.email}</a></h5>
-                    <h5 class="card-title"><a href="https://www.github.com/${this.github}">${this.github}</a></h5>
-                </div>
-            </div>`;
-}
-
-function internCard() {
-  return `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${this.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${this.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${this.email}">${this.email}</a></h5>
-                    <h5 class="card-title">${this.school}</h5>
-                </div>
-            </div>`;
-}
-
-function managerCard() {
-  return `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${this.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${this.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${this.email}">${this.email}</a></h5>
-                    <h5 class="card-title">${this.officeNumber}</h5>
-                </div>
-            </div>`;
-}
-
 let html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,4 +25,55 @@ let html = `<!DOCTYPE html>
         <div class="row">
             <div class="col-2">`;
 
-module.exports = cardGenerator;
+function cardGenerator(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].getRole() === "Engineer") {
+      engineerCard(arr[i]);
+    } else if (arr[i].getRole() === "Manager") {
+      managerCard(arr[i]);
+    } else {
+      internCard(arr[i]);
+    }
+  }
+
+  return (html += `</div>
+          </div>
+      </div>
+  </body>
+  </html>`);
+}
+
+function engineerCard(engineer) {
+  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-white bg-primary">${engineer.name}</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">${engineer.id}</h5>
+                    <h5 class="card-title"><a href="mailto:${engineer.email}">${engineer.email}</a></h5>
+                    <h5 class="card-title"><a href="https://www.github.com/${engineer.github}">${engineer.github}</a></h5>
+                </div>
+            </div>`);
+}
+
+function internCard(intern) {
+  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-white bg-primary">${intern.name}</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">${intern.id}</h5>
+                    <h5 class="card-title"><a href="mailto:${intern.email}">${intern.email}</a></h5>
+                    <h5 class="card-title">${intern.school}</h5>
+                </div>
+            </div>`);
+}
+
+function managerCard(manager) {
+  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-white bg-primary">${manager.name}</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">${manager.id}</h5>
+                    <h5 class="card-title"><a href="mailto:${manager.email}">${manager.email}</a></h5>
+                    <h5 class="card-title">${manager.officeNumber}</h5>
+                </div>
+            </div>`);
+}
+
+module.exports = { cardGenerator };
