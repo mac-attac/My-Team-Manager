@@ -1,3 +1,7 @@
 .navbar-custom {
-    background-color: navy;
+  background-color: navy;
+}
+
+.card {
+  display: inline-block;
 }

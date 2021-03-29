@@ -22,8 +22,7 @@ let html = `<!DOCTYPE html>
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-2">`;
+        <div class="row">`;
 
 function cardGenerator(arr) {
   for (var i = 0; i < arr.length; i++) {
@@ -44,36 +43,50 @@ function cardGenerator(arr) {
 }
 
 function engineerCard(engineer) {
-  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${engineer.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${engineer.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${engineer.email}">${engineer.email}</a></h5>
-                    <h5 class="card-title"><a href="https://www.github.com/${engineer.github}">${engineer.github}</a></h5>
+  return (html += `
+          <div class="col-4">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+              <div class="card-header text-white bg-primary">${engineer.name}
+                <div class="card-body bg-white text-primary">
+                  <h5 class="card-title">ID: ${engineer.id}</h5>
+                  <h5 class="card-title"><a href="mailto:${engineer.email}">Email: ${engineer.email}</a></h5>
+                  <h5 class="card-title"><a href="https://www.github.com/${engineer.github}">GitHub Username: ${engineer.github}</a></h5>
                 </div>
-            </div>`);
+              </div>
+            </div>
+          </div>
+      `);
 }
 
 function internCard(intern) {
-  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${intern.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${intern.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${intern.email}">${intern.email}</a></h5>
-                    <h5 class="card-title">${intern.school}</h5>
+  return (html += `
+          <div class="col-4">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+              <div class="card-header text-white bg-primary">${intern.name}
+                <div class="card-body bg-white text-primary">
+                  <h5 class="card-title">ID: ${intern.id}</h5>
+                  <h5 class="card-title"><a href="mailto:${intern.email}">Email: ${intern.email}</a></h5>
+                  <h5 class="card-title">School: ${intern.school}</h5>
                 </div>
-            </div>`);
+              </div>
+            </div>
+          </div>
+`);
 }
 
 function managerCard(manager) {
-  return (html += `<div class="card border-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-white bg-primary">${manager.name}</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">${manager.id}</h5>
-                    <h5 class="card-title"><a href="mailto:${manager.email}">${manager.email}</a></h5>
-                    <h5 class="card-title">${manager.officeNumber}</h5>
+  return (html += `
+          <div class="col-4">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+              <div class="card-header text-white bg-primary">${manager.name}
+                <div class="card-body bg-white text-primary">
+                  <h5 class="card-title">ID: ${manager.id}</h5>
+                  <h5 class="card-title"><a href="mailto:${manager.email}">Email: ${manager.email}</a></h5>
+                  <h5 class="card-title">Office Number: ${manager.officeNumber}</h5>
                 </div>
-            </div>`);
+              </div>
+            </div>
+          </div>`);
 }
 
 module.exports = { cardGenerator };
